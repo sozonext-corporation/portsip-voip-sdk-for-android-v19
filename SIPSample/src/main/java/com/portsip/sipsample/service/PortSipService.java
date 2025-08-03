@@ -258,10 +258,8 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
         if (!TextUtils.isEmpty(pushToken)&&CallManager.Instance().isRegistered)
         {
             String pushMessage = "device-os=android;device-uid=" + pushToken + ";allow-call-push=true;allow-message-push=true;app-id=" + APPID;
-            //old version
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "portsip-push", pushMessage);
             //new version
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "x-p-push", pushMessage);
+            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "X-Push", pushMessage);
 
             mEngine.refreshRegistration(0);
 
@@ -350,9 +348,8 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
 
         if (!TextUtils.isEmpty(pushToken)) {
             String pushMessage = "device-os=android;device-uid=" + pushToken + ";allow-call-push=true;allow-message-push=true;app-id=" + APPID;
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "portsip-push", pushMessage);
             //new version
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "x-p-push", pushMessage);
+            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "X-Push", pushMessage);
         }
 
         result = mEngine.registerServer(90, 0);
@@ -497,9 +494,8 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
     public void UnregisterToServerWithoutPush() {
         if (!TextUtils.isEmpty(pushToken)) {
             String pushMessage = "device-os=android;device-uid=" + pushToken + ";allow-call-push=false;allow-message-push=false;app-id=" + APPID;
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "portsip-push", pushMessage);
             //new version
-            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "x-p-push", pushMessage);
+            mEngine.addSipMessageHeader(-1, "REGISTER", 1, "X-Push", pushMessage);
         }
 
         unregisterToServer();

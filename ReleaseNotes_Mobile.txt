@@ -1,3 +1,12 @@
+PortSIP VoIP SDK v19.5.0
+=============================================
+Apr 23, 2025
+1. IPv6 Compatibility: In IPv6-only networks, SDP containing IPv4 addresses will now automatically map to IPv6 addresses.
+2. Conference Controls: The muteSession method now supports muting the host's audio/video in conferences by setting sessionId to CONFERENCE_SESSION_ID.
+3. API Initialization: In the initialize API, the DNSServer parameter now allows specifying a primary DNS server while preserving the system's existing DNS configurations.
+4. Bug Fix: Resolved an issue with packet handling in AMR and AMR-WB bandwidth-efficient modes.
+5. Bug Fix: Addressed a bug where video bitrate settings would not take effect.
+
 PortSIP VoIP SDK v19.4.7
 =============================================
 Feb 28, 2025
