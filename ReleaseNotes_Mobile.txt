@@ -1,0 +1,778 @@
+PortSIP VoIP SDK v19.4.7
+=============================================
+Feb 28, 2025
+1. support srtp with key lifetime. e.g |2^31.
+2. Re-implement sending RTP keepalive packet.
+
+
+PortSIP VoIP SDK v19.4.6
+=============================================
+Feb 11, 2025
+1. Fixed RTP CallBack callback SessionId error.
+
+PortSIP VoIP SDK v19.4.5
+=============================================
+Jan 18, 2025
+1. Fixed cannot be heard after transferring a call.
+
+PortSIP VoIP SDK v19.4.4
+=============================================
+Dec 12, 2024
+1. Allows modification of RTP CallBack callback data.
+2. Support set local video resolution.default is 720P.
+3. Android: Sample build with gradle 8.7.3, Java 11, Android Studio 2024.2.1.
+
+PortSIP VoIP SDK v19.4.3
+=============================================
+Nov 22, 2024
+1. When a call switches from video to audio, in addition to changing the direction of the video section to INACTIVE in the SDP, the video port is also changed to 0.
+2. The maximum allowed length for the path of the certificate file is 512.
+
+PortSIP VoIP SDK v19.4.2
+=============================================
+Aug 23, 2024
+1. When the Direction in the SDP is INACTIVE(both side hold), local unhold call, the Direction changed to sendrecv (previously, it was recvonly).
+2.Fix the issue of recording failure when only capturing received audio.
+
+PortSIP VoIP SDK v19.4.1
+=============================================
+Jul 3, 2024
+1. SDP O line use real IP.
+2. Fix the issue of video recording with audio and video out of sync.
+3. Modify the muteSession implementation to continue sending RTP data after muting the microphone.
+
+PortSIP VoIP SDK v19.4.0
+=============================================
+May 31, 2024
+1. Add enablePriorityIPv6Domain API, which allows specifying the preferred protocol when a domain supports both IPV4 and IPV6 simultaneously, with the default priority being IPV4.
+2. Enforce the inclusion of quotes around the DisplayName. The previous version of the SDK would add quotes when necessary.
+3. Add setUriUserEncoding API, Modifies the default URI user character needs to be escaped.
+4. Support for SIP messages with a maximum length of 16K. The previous version supported 8K. 
+
+PortSIP VoIP SDK v19.3.3
+=============================================
+Mar 19, 2024
+1. Openssl upgrade to 1.1.1w.
+
+PortSIP VoIP SDK v19.3.2
+=============================================
+Mar 1, 2024
+1. The function `startPlayingFileToRemote` will stop automatically after the file has finished playing, so there is no need to call `stopPlayingFileToRemote` within the `onPlayFileFinished` event.
+2. Fixing the crash caused by multiple calls using different audio sampling rates simultaneously.
+3. Android:Supports Android 14, adds Bluetooth permissions.
+
+
+PortSIP VoIP SDK v19.3.1
+=============================================
+Jan 24, 2023
+1. If the Server domain supports IPV6 & IPV4, IPV4 will be used first.
+2. Android: Added onAudioFocusChange event, fired when the audio focus has been changed.
+
+PortSIP VoIP SDK v19.2.2
+=============================================
+Nov 30, 2023
+1. Fixed IPV6 bug.
+2. Support SIP Notify message "duplicate-im-info" callback from onRecvNotifyOfSubscription event.
+
+PortSIP VoIP SDK v19.1
+=============================================
+Oct 18, 2023
+1. Openssl upgrade to 1.1.1v.
+2. Fixed without SDP call hold/update call bug.
+
+
+PortSIP VoIP SDK v19.0
+=============================================
+Jul 21, 2023
+1. Media Engine upgrade,Better performance, improved sound quality, better compatibility with network packet loss.
+2. SIP Protocol stack upgrade.
+3. Openssl upgrade to 1.1.1s.
+4. Audio recording support MP3/AMR.
+5. Video recording supports MP4.
+6. Support play audio MP3/MP4 file or RTSP/RTMP stream to the other party.
+   Replace API playVideoFileToRemote/stopPlayVideoFileToRemote/playAudioFileToRemote/stopPlayAudioFileToRemote
+   By startPlayingFileToRemote and stopPlayingFileToRemote
+   Replace Event  onPlayAudioFileFinished ,onPlayVideoFileFinished
+   By  onPlayFileFinished
+7. Video conference support more layout.
+   createVideoConference remove displayLocalVideoInConference, added confLayout, support 0-7 layout type.
+8. unRegisterServer added waitMS parameter,  0 means not wait unregister success.
+9. Added startPlayingFileLocally, stopPlayingFileLocally API.
+10. Allow getVersion without initialize SDK£¬ return a version string.
+11. The incoming call cannot be accepted, (such as Audio Codec mismatch, SRTP mismatch), 
+  thereby triggering the onInviteFailureevent, sessionId is -1, 
+  onInviteFailureevent added parameter callerDisplayName, caller,calleeDisplayName,callee.
+12. remove API getAudioStatistics and getVideoStatistics, replace by getStatistics api and onStatistics event.
+13. iOS: Event parameter char* change to NSString*.
+14. iOS: Remove API refreshCall, Switch the network, and the registration is successful. If there is a current call, it will automatically call REINVITE. 
+15. Android: remove CreateCallManager, DeleteCallManager API, context parameter are passed in the SDK constructor.
+16. Android: Added unInitialize API.
+
+PortSIP VoIP SDK v18.7
+=============================================
+Mar 21, 2023
+1. Change API enableReliableProvisional change to setReliableProvisional, can set to PRACK Supported or Required.
+     enableReliableProvisional(true) ==> setReliableProvisional(2)
+     enableReliableProvisional(false) ==> setReliableProvisional(0)
+2. Supported remote unhold call change SDP.
+3. Supported iLBC mode=20.
+4. Supported disable SIP KeepAlive.
+
+PortSIP VoIP SDK v18.6
+=============================================
+Dec 12, 2022
+1. openssl upgrade to 1.1.1s.
+2. c-ares upgrade to 1.8.1.
+
+PortSIP VoIP SDK v18.5
+=============================================
+Jun 10, 2022
+1. Optimize the audio conference mixing sound quality.
+2. When updateCall disable video, video rtp port use 0.
+3. Supported park-info.
+4. Added refreshCall API, update the address of the communication.
+5. Fixed updateCall BUG when use SRTP.
+
+PortSIP VoIP SDK v18.4
+=============================================
+Apr 26, 2022
+1. SIP Protocol stack upgrade.
+2. openssl upgrade to 1.1.1n.
+3. Support change audio device during call.
+4. Added refreshCal function.
+5. Fixed subject session ID <0 error
+6. Fixed dialog info version issue.
+7. Fixed KeepAlive bug.
+8. Fixed TCP/TLS disconnected from the network, uninitialize crash BUG.
+
+PortSIP VoIP SDK v18.3
+=============================================
+Feb 17, 2022
+1. Allow getVersion without initialize SDK.
+2. SendVideoStream don't scale video.
+3. P2P Call support set public IP,e.g localIp = "publicip:8.8.8.8".
+4. Fixed PlayVideoFileToRemote mute audio bug.
+5. Fixed video code empty check error.
+6. Fixed when enable rport, refresh registration contact header remove transport=tls bug.
+7. Android: Fixed bluetooth permission on android 12.
+
+PortSIP VoIP SDK v18.2
+=============================================
+Nov 11, 2021
+1. onSendMessageSuccess/onSendMessageFailure/onSendOutOfDialogMessageSuccess/onSendOutOfDialogMessageFailure event added sipMessage parameter.
+2. Limit  Record WAV file max size 2G.
+3. Added reg-id to SIP contact header.
+4. Fixed SRTP tag bug.
+5. Fixed don't refresh register bug.
+
+PortSIP VoIP SDK v18.1
+=============================================
+May 21, 2021
+1. Improve the compatibility of H264 video decoder.
+2. Fix the delay problem after video HOLD/UNHOLD.
+3. Added setVideoOrientatio API.
+
+PortSIP VoIP SDK v18
+=============================================
+Mar 16, 2021
+1. SIP Protocol stack upgrade.
+2. Added screen sharing support (iOS, Android can only accept screen sharing).
+3. VIDEOSTREAM_CALLBACK_MODE, AUDIOSTREAM_CALLBACK_MODE change to DIRECTION_MODE
+4. API setRtpCallback rename to enableRtpCallback,
+   Allow callbacks to specify the session, the direction(send/recv), and mediatype(audio/video/screen).
+5. Rtp Callback event:
+   onSendingRTPPacket,onReceivedRTPPacket rename to onRTPPacketCallback
+6. onInviteUpdated changed:
+   a. added screen parameters.
+   b. If Received SDP not change, don't fire onInviteUpdated event anymore.
+   c. UpdateCall API success will fire onInviteUpdated.
+7. Changed setRtpPortRange parameters, remove setRtcpPortRange API.
+8. New parameter "sipMessage" added for callback events onInviteClosed.
+9. Android: Added enableAudioManager API. when enable sdk will auto manager audio device input/output
+. default is enabled.
+10. Android: Added onAudioDeviceChanged, fired When available audio devices changed or audio device currently in use changed.
+
+
+
+PortSIP VoIP SDK v17.2
+=============================================
+Dec 7, 2020
+1. Upgrade webrtc to 4214.
+2. add "dialog to AllowedEvent.
+3. Support audio stereo recording.
+4. Fixed nack bug.
+5. Fixed a playaudio file loop parameter alway true bug.
+6. Fixed RTP KeepAlive BUG.
+7. Remove setLocalVideoWindow Api.
+8. New parameter "localVideoWindow" added to displayLocalVideo , replace setLocalVideoWindow API.
+
+
+PortSIP VoIP SDK v16.7
+=============================================
+Jun 8, 2020
+1. New parameter "mirror" added to "displayLocalVideo" function.
+2. When IPV6 and IPV4 both available e, prefer IPV4.
+3. Max registration time allowed to be 3600*24*360.
+
+PortSIP VoIP SDK v16.6
+=============================================
+Nov 18, 2019
+1. Fixed a memory leak BUG.
+2. Android: Video  Hardware encoder Key frame interval is set to 2 sec.
+3. Android: SIPSample FCM SDK version update to 20.
+
+PortSIP VoIP SDK v16.5
+=============================================
+Jul 25, 2019
+1. Added setChannelInputVolumeScaling API.
+2. Android:Support 64 bits architectures(ARM64 and X86_64).
+3. Fixed some minors bugs.
+
+PortSIP VoIP SDK v16.4=============================================Jun 14, 20191. Added setVideoCropAndScale. When the camera does not support specified resolution, it allows SDK to crop and fit in the specified resolution.2. Local video render Mirror.3. sendDTMF to support playDTMFTone.4. Support h264 High Profile.5. enableSessionTimer adds 2 modes.6. setPresenceStatue supports ï¿½ï¿½unpublishedï¿½ï¿½.7. Android: Support x86_648. Android: Adds enableVideoHardwareCodec API to enable/disable hardware video encoder.
+
+
+PortSIP VoIP SDK v16.3
+=============================================
+Sep 30, 2018
+1. Rename enableCallbackSendingSignaling to enableCallbackSignaling, to allow enable/disable Sent or Received SIP messages.
+2. Fixed some minors bugs.
+3. Fixed Bluetooth BUG.
+
+PortSIP VoIP SDK v16.2
+=============================================
+May 3, 2018
+1. PERS rewrote for below purposes:
+   a. Provide the Session Border Controller feature
+   b. Provide the VoIP Anti-Blocking feature for UAE
+   c. Added support for TCP Tunnel.
+2. Android: Update Sample to AndroidStudio 3.1
+3. Fixed some minors bugs.
+
+
+PortSIP VoIP SDK v16.1
+=============================================
+Mar 13, 2017
+1. Added enableEarlyMedia function.
+2. Renamed setAudioQos to enableAudioQos.
+3. Renamed setVideoQos to enableVideoQos.
+
+PortSIP VoIP SDK v16
+=============================================
+Feb 10, 2018
+1. Added VP9 video codec support
+2. Removed H263, H263+ video codec support.
+3. OPUS supports 2 channel, InbandFEC (default as enabled).
+4. Stability improvements for audio & video capturing and player.
+5. Remove Audio Statistics APIs
+   getDynamicSpeakerVolumeLevel
+   getDynamicMicrophoneVolumeLevel
+   getAudioRtcpStatistics
+   getAudioRtpStatistics
+   getNetworkStatistics
+  They are merged into a new API getAudioStatistics
+6. Removed Video statistics APIs
+   enableVideoDecoderCallback
+   getVideoRtpStatistics
+   callback event: onVideoDecoderCallback
+  They are merged into a new API getVideoStatistics
+7. Removed setVideoOrientation, auto-adjust Video Orientation by SDK. This API is not needed any more.
+8. Parameter type enableAudioStreamCallback changed
+ Removed type: AUDIOSTREAM_LOCAL_MIX and AUDIOSTREAM_REMOTE_MIX.
+ Added new type AUDIOSTREAM_BOTH.
+9. Android: added architecture Arm64 support.
+10. Android remove device APIs
+  getNumOfRecordingDevices
+  getNumOfPlayoutDevices
+  getRecordingDeviceName
+  getPlayoutDeviceName
+  setSpeakerVolume
+  getSpeakerVolume
+  setMicVolume
+  getMicVolume
+  getNumOfVideoCaptureDevices
+  getVideoCaptureDeviceName
+  muteSpeaker
+	muteMicrophone
+11. Android: Support Hardware AEC, AGC ,NS (Depends on device)
+12. Android: minSdkVersion changed to 16.
+13. Android added support for Hardware Acceleration video codec for h264, vp8, vp9.
+14. Android optimize audio routing, support switch to Bluetooth.
+  Removed API setLoudspeakerStatus
+  Replaced by:
+    getAudioDevices
+    setAudioDevice
+15. Android support Android O DNS.
+
+PortSIP VoIP SDK v15.2
+=============================================
+Nov 27, 2017
+1.New parameter "sipMessage" added for callback events onRecvOutOfDialogMessage.
+
+
+PortSIP VoIP SDK v15.1
+=============================================
+Aug 1, 2017
+
+1. New parameter "TLSCertificatesRootPath","TLSCipherList","verifyTLSCertificate" added to "initialize" function.
+   Set it to specify TLSCertificate verification.
+2. Renamed getExtensionHeaderValue to getSipMessageHeaderValue.
+3. Replaced addExtensionHeader with addSipMessageHeader.
+4. Replaced clearAddExtensionHeaders with clearAddedSipMessageHeaders.
+5. Replaced modifyHeaderValue with modifySipMessageHeader.
+6. Replaced clearModifyHeaders with clearModifiedSipMessageHeaders.
+7. Added removeAddedSipMessageHeader function.
+8. Added removeModifiedSipMessageHeader function.
+9. New parameter "sipMessage" added for callback events onRegisterSuccess, onRegisterFailure, onInviteFailure. Allow obtaining the specified SIP header value from "sipMessage".
+10. New callback events "onRecvNotifyOfSubscription". When receiving a NOTIFY message of the subscription, this event will be triggered.
+11. New callback events "onSubscriptionFailure". When sending SUBSCRIBE failure, this event will be triggered.
+12. New callback events "onSubscriptionTerminated". When a SUBSCRIPTION terminated or expired, this event will be triggered.
+
+
+PortSIP VoIP SDK v15.0
+=============================================
+Jun  7,  2017
+
+This is a major upgrade, recommend to update.
+
+
+1. Support callkit for iOS
+2. Support 3GPP Call-Waiting
+3. Support 3GPP IMS Conferencing
+4. Support Present Agent(PUBLISH)
+5. Moved LocalIP and localPort parameters from setUser function to initialize function.
+6. New parameter "sessionId" added for setVideoBitrate and setVideoFrameRate functions, set it to specify session.
+7. Removed setDisplayName function, now use "setUser" function to set the display name.
+8. Removed detectMwi function, now use sendSubscription function to check MWI.
+9. Removed presenceOnline and presenceOffline functions, use setPresenceStatus function to instead of it.
+10. Replace createConference with createAudioConference and createVideoConference.
+11. Renamed enableCheckMwi to enableAutoCheckMwi.
+12. Renamed presenceSubscribeContact function to presenceSubscribe
+13. New parameter "sipMessage" added for callback events onInviteIncoming, onInviteSessionProgress, onInviteRinging, onInviteAnswered, onInviteUpdated, allows obtain the specify SIP header value from "sipMessage".
+14. Added roundTripTime parameter to getAudioRtcpStatistics function.
+15. Added sendSubscription and terminateSubscription functions.
+16. Added setPresenceStatus function.
+17. Added function outOfDialogRefer.
+18. Added function attendedRefer2.
+19. Added function removeUser.
+20. Added function refreshRegistration. When network changed between WIFI and LTE, should call this API to refresh registry.
+21. Added setDefaultSubscriptionTime function
+22. Added setDefaultPublicationTime function
+23. Added setPresenceMode function
+24. Added presenceTerminateSubscribe
+25. Added pickupBLFCall function.
+26. iOS: New functions startAudio and stopAudio added. It will be used by callkit.
+27. iOS: callkit support added for iOSSIPSample, Added new class CallManger.
+28. iOS: Add libc++.tbd to "Link Binary With Libraries".
+29. Android: Remove API setSystemOutputMute, getSystemOutputMute, setSystemInputMute, getSystemInputMute.
+30. Fixed some other minor bugs.
+
+
+PortSIP VoIP SDK v11.3
+=============================================
+Dec 26, 2016
+1. Added new function setInstanceId.
+2. SIPSample added Ring
+3. SIPSample Added background support.
+4. Fixed some other minor bugs.
+
+PortSIP VoIP SDK v11.2.4
+=============================================
+Sep 16,2016
+1. Supported IPv6 only to IPV4 server.
+2. Support recorded video only.
+3. Added setChannelOutputVolumeScaling API.
+4. For iOS:Compatible with iOS 10.
+5. Added Mixed contents support.
+6. Fixed the small cracking sound BUG when re-inviting.
+7. Fixed some other minor bugs.
+
+
+ PortSIP VoIP SDK v11.2.3
+=============================================
+May 17,2016
+1. Added enableVideoDecoderCallback and onVideoDecoderCallback function.
+2. Added setVideoMTU function.
+3. Changed setVideoResolution createConference video size parameters.
+4. Upgraded the OpenSSL to v1.0.2g.
+5. Fixed some other minor bugs.
+
+PortSIP VoIP SDK v11.2.2
+=============================================
+Apr 10,2015
+1. For iOS: Fixed the problem that audio was routed to speaker automatically when SDK goes to background during the call.
+2. For iOS: Fixed the problem that the SDK randomly crashs when it goes to background.
+3. For iOS: Fixed the problem that user may fail to set the video resolution.
+4. For iOS: Fixed the problem that no tap sound in iOS after the call is established.
+5. For iOS: Added PortSIPVideoRenderView class to display local and remote video.
+6. Upgraded the OpenSSL to v1.0.2a.
+7. Changed AEC, AGC, ANS functions.
+8. Fixed some other minor bugs.
+
+
+ PortSIP VoIP SDK v11.2.1
+=============================================
+Nov 28,2014
+1. Added CABAC support for H.264.
+2. Added sendFractionLost, sendCumulativeLost, recvFractionLost, recvCumulativeLost parameters for "getAudioRtcpStatistics" function.
+3. Changed parameters "useVirtualAudioDevice", "useVirtualVideoDevice" of "initialize" function to "audioDeviceLayer", "videoDeviceLayer".
+4. Fixed a bug of attended transfer if the UAS PRACK is enabled.
+5. Fixed a crash bug when establishing the H.263 video call on iOS.
+6. Fixed the problem that the IPv6 does not work on Android.
+7. Fixed a bug when recording the video on iOS.
+8. Updated the PERS encryption mechanism.
+9. Fixed some minor bugs.
+
+
+ PortSIP VoIP SDK v11.2
+=============================================
+July 18, 2014
+1. Upgraded the SDK for iOS from 3.1 to 11.2.
+2. Added a parameter for "registerServer" function.
+3. Fixed a bug of VP8.
+4. Fixed some minor bugs.
+
+
+PortSIP VoIP SDK V11.1
+=============================================
+May 28, 2014
+1. Fixed a memory leak problem when recording the video.
+2. Fixed the bug of iLBC codec for supporting 20ms, 30ms.
+3. Fixed the problem on Android that when receiving the message, the message length always is 0.
+4. Fixed a bug when parsing SDP offer/answer to get the dynamic codec RTP payload type.
+
+
+PortSIP VoIP SDK V11.0
+=============================================
+May 8, 2014
+This version includes some major updates. It's quite different to the v8.2.
+In the future, the PortSIP VoIP SDK will have two branches, with one from v8.2, and the other from v11.0.
+The 8.x is for some special customers.
+
+We suggest normal customers to upgrade to v11.0,
+
+
+1. We provide a unified SDK which has same API functions and callback events on all platforms: Android, iOS, Windows, Mac, Linux.
+2. A lot of API/Callback function names, parameters, return values have been changed/removed. Please read the documentation with special attention.
+3. Allow to call SDK API functions in callback directly - except the onAudioRawCallback, onVideoRawCallback, onReceivedRtpPacket, onSendingRtpPacket callbacks.
+4. Support to send the YUV420 format video stream from a source instead of camera.
+5. Support native 64 bits.
+
+ PortSIP VoIP SDK V8.2
+=============================================
+Feb 18, 2014
+1. Support full PRACK.
+2. Support QoS precondition.
+3. Support 3GPP tags.
+4. Allow to modify the display name.
+5. Added two parameters to updateInvite which allows to remove existent audio/video media stream.
+6. Support to set the RTCP bandwidth parameter - RFC 3556.
+7. Added four callbacks:
+   onReceivedRefer
+   onReferAccepted
+   onReferRejected
+   onInviteConnected
+   onInviteSessionProgress.
+
+8. Deleted four callbacks:
+   onInviteUACConnected
+   onInviteUASConnected
+   onPASVTransferFailure
+   onPASVTransferSuccess
+
+9. Added eight functions:
+   acceptRefer
+   rejectRefer
+   enable3GppTags
+   enableQosPreconditions
+   enableReliableProvisional
+   setDisplayName
+   setAudioRtcpBandwidth
+   setVideoRtcpBandwidth.
+
+10. Deleted setReliableProvisionalMode function.
+11. Removed the XMPP SDK.
+12. Fixed some minor bugs.
+
+
+ PortSIP VoIP SDK V8.1
+=============================================
+Dec 16, 2012
+1. Support H.264 high profile.
+2. Added enableCallbackSentSignaling function to allow to get all sending SIP messages.
+3. Added a function setRtcpPortRange which allows specifying the RTCP port range.
+4. Allow non-contiguous RTP and RTCP-port pairs.
+5. Odd-numbered RTP port usage.
+6. Fixed a bug for the DTMF tone compatibles.
+7. Added iSAC and ISACS audio codec.
+8. Added VP8 video codec.
+9. Added a "RECORD_MODE" parameter for startVideoRecording function.
+10. Fixed some minor bugs.
+
+
+ PortSIP VoIP SDK V8.0
+=============================================
+Sep 06, 2012
+1. Support UAC PRACK - setReliableProvisionalMode function.
+2. Added two functions for User settable RTP payload type supported:
+   setAudioCodecPayloadType
+   setVideoCodecPayloadType
+3. Allow video call without audio.
+4. Added a parameter which name is "refreshMode" of "enableSessionTimer" function.
+5. Fixed some bugs.
+
+
+PortSIP VoIP SDK V7.2
+=============================================
+May 28, 2012
+1. Added AMR-RED, maxptime, ptime support for AMR and AMR-WB.
+2. Virtual audio and video device support - added two parameters for "initialize" function.
+3. Added "discardAudio" function.
+4. Added "setRTPCallback" function that supports to access the sending and received RTP packet.
+5. Added "getNetworkStatistics" function that allows to obtain more networks statistics.
+6. Added "setAudioJitterBufferLevel" function allow set the audio jitter buffer.
+7. Added "getNICNums" function that allows to obtain the NIC(Network Interface Card) numbers.
+8. Added a parameter for "startAudioRecording" function that allows to set the record mode.
+9. Fixed a few bugs.
+
+
+ PortSIP VoIP SDK V7.1
+=============================================
+Jan 16, 2012
+1. Added the AMR, AMR-WB, G.722.1 codec.
+2. Added two functions: setAudioCodecParameter and setVideoCodecParameter.
+3. Removed the setProfileLevelIdOfH264 function.
+4. Support RFC4867.
+5. Added audioPlayLoopbackTest function.
+6. Fixed a few bugs.
+
+
+PortSIP VoIP SDK V7.0
+=============================================
+Nov 15, 2011
+This version includes some major updates.
+1. Optimized the AEC and CNG, NS features. Now enjoy the crystal HD audio.
+2. Optimized the video codecs. Now enjoy the crystal HD video.
+3. Optimized the log system.
+4. Support tracking error from return value of API functions. 5. The G.723.1, G.722.1, AMR-WB are temporarily unavailable. They will come with next 7.1.
+6. Changed the audio and video stream callback functions.
+7. Integrated the "Device Manager APIs" into "PortSIP Core".
+8. Deleted some functions and added some new functions.
+9. Support record video file as H.264, H.263 format to reduce the recording file size.
+10. Optimized the core algorithm to reduce the CPU usage.
+
+
+PortSIP VoIP SDK V6.8
+=============================================
+June 10, 2011
+1. Support IPv6.
+2. Added three fucntions for conference:
+   createConferenceEx
+   joinToConference
+   removeFromConference.
+
+3. Added two functions to allow to obtain the statistics of RTP.
+   getAudioRtpStatistics
+   getVideoRtpStatistics.
+
+4. Added a new function getLocalIP6 to obtain the local IP in IPv6 format.
+5. Added a function setKeepAliveTime to allow to enable/disable the SIP keep alive.
+6. Fixed some minor bugs.
+
+
+PortSIP VoIP SDK V6.6
+=============================================
+Mar 10, 2011
+1. Added support QVGA resolution for H.264 codec.
+2. Added a new function detectMwi to obtain the Mwi status. 3. Fixed a bug for the G.722 codec.
+4. Added a function endOutofDialogMessage.
+5. Added new function sendMessageEx and sendOutOfDialogMessageEx that allow to send the binary data by MESSAGE method.
+6. Added a function discardAudio to discard incoming and outgoing audio packets.
+7. Support switching audio device during the call.
+
+
+PortSIP VoIP SDK V6.5
+=============================================
+October 20, 2010
+1. Added MP3 format support for conversation recording.
+2. Support playing the wave file to a special line (session).
+3. Support recording the conversation on a special line(session).
+4. Optimized the RTP jitter buffer.
+
+
+ PortSIP VoIP SDK V6.3
+=============================================
+August 20, 2010
+1. Added a parameter appLogLevel for initializing function to allow to generate the SDK log into files.
+2. Changed enableLog function to enableStackLog.
+3. Fixed a bug of PortXMPP that is compatibles with OpenFire.
+4. Fixed the problem that when calling to PSTN, the voice quality will become bad if the ptime goes more than 20.
+
+
+ PortSIP VoIP SDK V6.2
+=============================================
+July 26, 2010
+1. Added a function to support sending message by MESSAGE method in dialog (in call): sendMessage.
+2. Added an event receivedMessage (for VC is SIP_RECV_MESSAGE) for
+   receiving the message by MESSAGE method in the dialog (in call).
+
+3. Changed the setPlayWaveFileToRemote function parameters to support event report once play finished.
+ VC: added a callback function fnPlayWaveFileToRemoteFinished.
+   C#, VB, Javascript, Delphi: added an event playWaveFileToRemoteFinished.
+
+4. Changed the setPlayWAVIFileToRemote function parameters to support event report once play finished.
+ VC: added a callback function fnPlayAviFileFinished.
+   C#, VB, Javascript, Delphi: added an event playAviFileToRemoteFinished.
+
+5. Added getDynamicVolumeLevel function to obtain the speaker & micrphone dynamic volume level.
+6. Changed the video image capturing mode to avoid the video image upside down issue.
+7. Fixed a bug in the Device Manager SDK: if set the "NULL" for "waveFile" parameter with
+   Device_playLocalWaveFile, the Device Manager SDK will be crashed.
+
+8. Support call PortSIP VoIP SDK directly by P/Invoke class wrapper without OCX.
+9. Provide new SDK Sample projects to show the usage of P/Invoke class wrapper in WinForm and WPF applications.
+
+
+ PortSIP VoIP SDK V6.1
+=============================================
+Apr 15, 2010
+1. Added support on Firefox webphone.
+2. Fixed the bug that no sound heard in audio conferencing.
+
+
+PortSIP VoIP SDK V6.0
+=============================================
+Apr 01, 2010
+1: Added G.722.1, G.722, AMR-WB, SPEEX, SPEEX-WB audio codecs.
+2. Added 720P support with H.264.
+3. Added three functions to support QoS that allowl to set the DSCP value for audio and video RTP:
+   setDSCPForQos
+   enableAudioQos
+   enableVideoQos
+
+4. Added a parameter for sendPcmStreamToRemote funciton.
+5. Change the default payload type of iLBC to 97.
+6. Added function setDisplayNameOfFrom that allows to change the display name of "From" SIP header.
+7. Improved the performance to reduce CPU usage.
+
+
+ PortSIP VoIP SDK V5.5
+=============================================
+Jan 25, 2010
+1. Added TCP transport for SIP signaling.
+2. Added forwardCall function.
+3. Added setRtpKeepAlive function.
+4. Added the appendTimestamp parameter for setAudioRecordPathName and setVideoRecordPathName.
+5. Added the playLocalWaveFile function in Device Manager SDK.
+6. Fixed a bug of setRtpPortRange function.
+7. Fixed the problem that volume cannot be changed under Windows Vista/7.
+9. Deleted function setDefaultAudioInputDevice from Device Manager SDK.
+10. Deleted function setDefaultAudioOutputDevice from Device Manager SDK.
+
+
+PortSIP VoIP SDK V5.3
+=============================================
+Oct 15, 2009
+1. Added sendPcmStreamToRemote function to support sending the audio stream directly in PCM format instead of audio device capturing (Microphone).
+2. Added setSendAudioStream function to allow to enable/disable sending the audio stream on a line.
+3. Added a function addSupportedMimeType that allows the SDK to receive the SIP message with special mime type inclusive.
+4. Added a function sendInfo that allows to send the INFO message in dialog.
+5. Added an event receivedInfo.
+6. Added an event receivedOptions.
+
+
+PortSIP VoIP SDK V5.2
+=============================================
+Sep 16, 2009
+1. Added enableCheckMwi function to allow to enable/disable check the MWI.
+2. Added enableCabacOfH264 function to allow to enable/disable the CABAC in H.264.
+3. Fixed some video compatibility issues.
+
+
+ PortSIP VoIP SDK V5.1
+=============================================
+August 18, 2009
+1. Suport on sending the OPTIONS message.
+2. Added support to set the audio capture sample (ptime).
+3. Added an function that allows to get currently SDK version number.
+4. Fixed a bug that allows to change the video image size and position during video conversation.
+
+
+ PortSIP VoIP SDK v5.0
+=============================================
+June 06, 2009
+This version include some major updates.
+1. Support display name.
+2. Support 3rd video conference.
+3. Changed the conference API functions.
+4. Much better voice quality than 4.x version.
+5. Support session timer.
+6. Added the function: setVideoFrameRate to set the video frame rate.
+7. Changed the video stream callback parameter (for VB.NET, C#, Delphi, changed the receivedVideoStream event parameter).
+8. Changed the audio stream callback parameter (for VB.NET, C#, Delphi, changed the receivedAudioStream event parameter)
+
+
+ PortSIP VoIP SDK V4.8
+=============================================
+March 03, 2009
+1. Added P2P call without SIP proxy server.
+2. Support TLS/SRTP.
+3. Support to set the RTP port range.
+4. Fixed some bugs for video call.
+
+
+PortSIP VoIP SDK V4.7
+=============================================
+Nov 18, 2008
+1. Fixed a crash bug that caused calling uninitialized after refresh registration failed.
+2. Added a parameter "remoteVideoWindow" for setVideoImagePos funciton.
+3. Added support call forwarding (redirect).
+ Added two funcitons:
+   enableCallForwarding;
+   disableCallForwarding;
+
+4. Added an event: inviteBeginForward
+
+
+PortSIP VoIP SDK V4.6
+=============================================
+Oct 08, 2008
+1. Fixed a bug for answering the INFO and MESSAGE.
+2. Support adding custom SIP message header.
+3. Support modifying SIP message header.
+4. Added function reverseLocalViewVideo
+5. Renamed reverseRemoteVideo to reverseReceivedVideo
+6. Renamed reverseLocalVideo to reverseSendingVideo
+7. Deleted getLocalIP function of PortSIP Core SDK.
+8. Deleted setLicenseKey function of Device Manager SDK.
+9. Added addExtensionHeader function.
+10. Added clearAddExtensionHeaders function.
+11. Added modifyHeaderValue function.
+12. Added clearModifyHeaders function.
+
+
+PortSIP VoIP SDK V4.5
+=============================================
+Aug 19, 2008
+1. Added SIMPLE protocol support for presence and IM.
+2. Fixed an assertion failure bug when the Auto Answer is enabled.
+3. Fixed an bug to support the multiple network card.
+4. Changed the function name of setPlayWaveFile to setPlayWaveFileToRemote.
+5. Changed the function name of playWaveFile to playLocalWaveFile.
+6. Added support for generating the SIP stack log.
+
+
+ PortSIP VoIP SDK V4.3
+=============================================
+Jun 15, 2008
+1. Optimized Automatic Gain Control.
+2. Added video recording as AVI file.
+3. Allow access to audio stream directly.
+4. Added MJPG, YUV2 format for video capture to support no-driver USB camera.
+5. Refresh the video view when stoping video rendering.
+6. Changed startRecording and stopRecording functions (methods) to startAudioRecording and stopAduioRecording.
+
+
+PortSIP VoIP SDK V4.2
+=============================================
+Jun 05, 2008
+1. Added support for detecting incoming DTMF tone.
