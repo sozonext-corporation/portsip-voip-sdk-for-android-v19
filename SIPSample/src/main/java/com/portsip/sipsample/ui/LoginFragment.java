@@ -167,7 +167,7 @@ public class LoginFragment extends BaseFragment implements AdapterView.OnItemSel
                     SaveUserInfo();
                     Intent onLineIntent = new Intent(getActivity(), PortSipService.class);
                     onLineIntent.setAction(PortSipService.ACTION_SIP_REGIEST);
-                    PortSipService.startServiceCompatibility(getActivity(), onLineIntent);
+                    PortSipService.startServiceCompatibility(getActivity(), onLineIntent,true);
                     tvStatus.setText("RegisterServer..");
                 }
                 break;
@@ -175,7 +175,7 @@ public class LoginFragment extends BaseFragment implements AdapterView.OnItemSel
 
                 Intent offLineIntent = new Intent(getActivity(), PortSipService.class);
                 offLineIntent.setAction(PortSipService.ACTION_SIP_UNREGIEST);
-                PortSipService.startServiceCompatibility(getActivity(),offLineIntent);
+                PortSipService.startServiceCompatibility(getActivity(),offLineIntent,true);
                 tvStatus.setText("unRegisterServer");
                 break;
         }

@@ -84,8 +84,7 @@
         </activity>
 		<activity android:name=".sipsample.ui.IncomingActivity" android:launchMode="singleInstance" android:noHistory="true"/>
         <service android:name=".sipsample.service.PortSipService"
-			android:foregroundServiceType="microphone|camera|mediaPlayback">
-		</service>
+			android:foregroundServiceType="microphone"/>
 		<!-- [START firebase_service] -->
 		<service
 			android:name=".sipsample.service.MyFirebaseMessagingService"

@@ -58,7 +58,7 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
 
     public static final String ACTION_PUSH_MESSAGE = "PortSip.AndroidSample.Test.PushMessageIncoming";
     public static final String ACTION_PUSH_TOKEN = "PortSip.AndroidSample.Test.PushToken";
-
+    public static final String ACTION_START_FOREGROUND = "foregroundService";
     public static final String INSTANCE_ID = "instanceid";
 
     public static final String USER_NAME = "user name";
@@ -111,7 +111,6 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
             mNotificationManager.createNotificationChannel(channel);
             mNotificationManager.createNotificationChannel(callChannel);
         }
-        showServiceNotifiCation();
 
         registerReceiver();
 
@@ -188,7 +187,6 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
     public void onRTPPacketCallback(long sessionId,int mediaType,int enum_direction,byte[] RTPPacket, int packetSize) {
 
     }
-
     private void showServiceNotifiCation(){
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -207,13 +205,11 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
                 .build();// getNotification()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(SERVICE_NOTIFICATION, builder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-                    | ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
-                    |ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+                  );
         } else {
             startForeground(SERVICE_NOTIFICATION, builder.build());
         }
     }
-
     public void showPendingCallNotification(Context context, String contenTitle,String contenText,Intent intent) {
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -232,6 +228,10 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
     public int onStartCommand(Intent intent, int flags, int startId) {
         int result = super.onStartCommand(intent, flags, startId);
         if (intent != null) {
+            boolean foreGround = intent.getBooleanExtra(ACTION_START_FOREGROUND,false);
+            if(foreGround){
+                showServiceNotifiCation();
+            }
             if(ACTION_PUSH_MESSAGE.equals(intent.getAction())){
                 if(!CallManager.Instance().online){
                     initialSDK();
@@ -1138,8 +1138,9 @@ public class PortSipService extends Service implements OnPortSIPEvent, NetWorkRe
     }
 
 
-    public static void startServiceCompatibility(@NonNull Context context,@NonNull Intent intent){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    public static void startServiceCompatibility(@NonNull Context context,@NonNull Intent intent,boolean forground){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && forground) {
+            intent.putExtra(ACTION_START_FOREGROUND,true);
             context.startForegroundService(intent);
         }else {
             context.startService(intent);
